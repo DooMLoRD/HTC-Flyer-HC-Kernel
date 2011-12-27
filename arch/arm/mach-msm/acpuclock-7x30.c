@@ -57,7 +57,7 @@
 
 #define FLYER_ACPU_MIN_UV_MV 750U
 #ifdef CONFIG_NUTTER
-#define FLYER_ACPU_MAX_UV_MV 1500U
+#define FLYER_ACPU_MAX_UV_MV 1525U
 #else
 #define FLYER_ACPU_MAX_UV_MV 1350U
 #endif
@@ -87,30 +87,33 @@ struct clkctl_acpu_speed {
 static struct clock_state drv_state = { 0 };
 
 static struct cpufreq_frequency_table freq_table[] = {
-	{ 0, 245000 },
-	{ 1, 422400 },
-	{ 2, 499200 },
-	{ 3, 576000 },
-	{ 4, 652800 },
-	{ 5, 729600 },
-	{ 6, 806400 },
-	{ 7, 883200 },
-	{ 8, 960000 },
-	{ 9, 1036800 },
-	{ 10, 1113600 },
-	{ 11, 1190400 },
-	{ 12, 1267200 },
-	{ 13, 1344000 },
-	{ 14, 1420800 },
-	{ 15, 1497600 },
+	{ 0, 122880 },
+	{ 1, 245000 },
+	{ 2, 368640 },
+	{ 3, 460800 },
+	{ 4, 576000 },
+	{ 5, 652800 },
+	{ 6, 729600 },
+	{ 7, 806400 },
+	{ 8, 883200 },
+	{ 9, 960000 },
+	{ 10, 1036800 },
+	{ 11, 1113600 },
+	{ 12, 1190400 },
+	{ 13, 1267200 },
+	{ 14, 1344000 },
+	{ 15, 1420800 },
+	{ 16, 1497600 },
 #ifndef CONFIG_NUTTER
-	{ 16, CPUFREQ_TABLE_END },
+	{ 17, CPUFREQ_TABLE_END },
 #else //CONFIG_NUTTER
-	{ 16, 1574400 },
-	{ 17, 1651200 },
-	{ 18, 1728000 },
-	{ 19, 1804800 },
-	{ 20, CPUFREQ_TABLE_END },
+	{ 17, 1574400 },
+	{ 18, 1651200 },
+	{ 19, 1728000 },
+	{ 20, 1804800 },
+	{ 21, 1900800 },
+	{ 22, 2016000 },
+	{ 23, CPUFREQ_TABLE_END },
 #endif
 };
 
@@ -120,12 +123,12 @@ static struct cpufreq_frequency_table freq_table[] = {
 static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 24576,  SRC_LPXO, 0, 0,  30720,  1000, VDD_RAW(1000) },
 	{ 61440,  PLL_3,    5, 11, 61440,  1000, VDD_RAW(1000) },
-	{ 122880, PLL_3,    5, 5,  61440,  1000, VDD_RAW(1000) },
+	{ 122880, PLL_3,    5, 5,  61440,  950, VDD_RAW(950) },
 	{ 184320, PLL_3,    5, 4,  61440,  1000, VDD_RAW(1000) },
 	{ MAX_AXI_KHZ, SRC_AXI, 1, 0, 61440, 1000, VDD_RAW(1000) },
 	{ 245000, PLL_3,    5, 2,  122500, 1000, VDD_RAW(1000) },
-	{ 422400, PLL_3,    5, 1,  192000, 1050, VDD_RAW(1050) },
-	{ 499200, PLL_1,    2, 0,  192000, 1050, VDD_RAW(1050) },
+	{ 368640, PLL_3,    5, 1,  192000, 1050, VDD_RAW(1050) },
+	{ 460800, PLL_1,    2, 0,  192000, 1050, VDD_RAW(1050) },
 	{ 576000, PLL_3,    5, 1,  192000, 1075, VDD_RAW(1075) },
 	{ 652800, PLL_2,    3, 0,  192000, 1100, VDD_RAW(1100) },
 	{ 729600, PLL_2,    3, 0,  192000, 1100, VDD_RAW(1100) },
@@ -144,6 +147,8 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 1651200, PLL_2,   3, 0,  192000, 1400, VDD_RAW(1400) },
 	{ 1728000, PLL_2,   3, 0,  192000, 1425, VDD_RAW(1425) },
 	{ 1804800, PLL_2,   3, 0,  192000, 1450, VDD_RAW(1450) },
+	{ 1900800, PLL_2,   3, 0,  192000, 1475, VDD_RAW(1475) },
+	{ 2016000, PLL_2,   3, 0,  192000, 1500, VDD_RAW(1500) },
 #endif //CONFIG_NUTTER
 	{ 0 }
 };
