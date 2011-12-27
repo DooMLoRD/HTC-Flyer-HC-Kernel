@@ -1,0 +1,3 @@
+ARCH=arm CROSS_COMPILE=/home/doomlord/android-toolchain-eabi-linaro-4.6-2011.10/bin/arm-eabi- make flyer_hc_doom_defconfig
+echo "4.6.2" > CURRENT_TOOLCHAIN
+
